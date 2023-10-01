@@ -1,29 +1,47 @@
-/******************************************************************************
-
-                            Online Java Compiler.
-                Code, Compile, Run and Debug java program online.
-Write your code in this editor and press "Run" button to execute it.
-
-*******************************************************************************/
+import java.util.Random;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main
 {
 	public static void main(String[] args) {
-		System.out.println("Hello World");
+		System.out.println(Arrays.deepToString(Main.method(7)));
 	}
    
        
-	int [][] metod(Integer n) {
+	static Integer [][] method(Integer n) {
+	    
+	    //Начальная инициализация
 	    Random rand = new Random();
-	    int [][] array = new int [n]
+	    Integer [][] array = new Integer [n][];
+	    List<Integer> randomElement = new ArrayList<>(); //Создание динамического массива для хранения размеров массивов
+	        
+	    //Генерация массивов
 	    for (int i = 0; i < n; i++) {
-            array[i] = new int [rand.nextInt(1000)];
-            for (int j = 0; j < array[i].lenght; j++) {
-                array[i][j] = rand.nextInt (1000)
+            int temp = rand.nextInt(10);
+            while (randomElement.contains(temp)){
+                temp =  rand.nextInt(10);
+            }
+            randomElement.add(temp); 
+            array[i] = new Integer [temp];
+            for (int j = 0; j < array[i].length; j++) {
+            array[i][j] = rand.nextInt (10);
             }
 	    }
-    }
-    
+	    
+	    //Сортировка массивов
+	    for (int i = 0; i < n; i++) {
+	        if ( i % 2 != 0) {
+	            Arrays.sort(array[i], Comparator.reverseOrder()); 
+	        } //это нечетное
+	        else {
+	            Arrays.sort(array[i]);
+	        }
+	    }
+	    return array;
+	}
 }
 
 
